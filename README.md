@@ -1,5 +1,5 @@
 # Layout_DSL
-Build Android layout with kotlin, get rid of xml file, which has poor performance
+This library helps you to build Android layout with kotlin, getting rid of xml file, which has poor performance.
 
 Inflating layout from xml file is time consuming. Because we have to load xml file to memory by I/O operation, then traverses tags in the xml files and create View instance by refelection.
 
