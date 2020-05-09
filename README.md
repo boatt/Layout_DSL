@@ -3,8 +3,6 @@ This library helps you to build Android layout with kotlin, getting rid of xml f
 
 Inflating layout from xml file is time consuming. Because we have to load xml file to memory by I/O operation, then traverses tags in the xml files and create View instance by refelection.
 
-This two process is time consuming.
-
 This library creating layout by Kotlin, Thus we could get rid of this two process, just like the following:
 ```
 class FirstFragment : Fragment() {
