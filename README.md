@@ -6,17 +6,15 @@ Inflating layout from xml file is time consuming. Because we have to load xml fi
 This library creating layout by Kotlin, Thus we could get rid of this two process, just like the following:
 ```
 class FirstFragment : Fragment() {
+    private var ivBack:ImageView? = null
+    private var tvTitle:TextView? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
-        return buildViewByClDsl()
-    }
-
-    private fun buildViewByClDsl(): View =
+    private val rootView by lazy {
         ConstraintLayout {
             layout_width = match_parent
             layout_height = match_parent
 
-            ImageView {
+            ivBack = ImageView {
                 layout_id = "ivBack"
                 layout_width = 40
                 layout_height = 40
@@ -25,7 +23,29 @@ class FirstFragment : Fragment() {
                 src = R.drawable.ic_back_black
                 start_toStartOf = parent_id
                 top_toTopOf = parent_id
-                onClick = { onBackClick() }
             }
-       }
+
+            tvTitle = TextView {
+                layout_width = wrap_content
+                layout_height = wrap_content
+                text = "commit"
+                textSize = 30f
+                textStyle = bold
+                align_vertical_to = "ivBack"
+                center_horizontal = true
+            }
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return rootView
+    }
+
+    private fun onBackClick() {
+        activity?.finish()
+    }
+
 ```
